@@ -1,0 +1,21 @@
+EconLogScan(repo):
+  if repo contains subdirectory
+    EconLogScan(subdirectory)
+  else
+    if path contains 'feed' #indicates that the html file contains info for comments, which aren't wanted for this project
+      do nothing
+    elif path contains 'archive'
+      if archive byline is Bryan's name
+        send to xml
+    else
+      if byline is Bryan's name
+        send to xml
+
+CheckByline(lineNum):   #Only difference between archive and main is they will require different numbers for lineNum
+  return(html_lines[lineNum] == 'byline code for Bryan')
+  
+SendToXML(html):
+  Parse html using BeautifulSoup
+  Split lines
+  Send all but first line to XML file
+  
