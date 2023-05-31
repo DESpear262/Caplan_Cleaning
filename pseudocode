@@ -1,7 +1,5 @@
 EconLogScan(repo):
-  if repo contains subdirectory
-    EconLogScan(subdirectory)
-  else
+  for repo os.walk
     if path contains 'feed' #indicates that the html file contains info for comments, which aren't wanted for this project
       do nothing
     elif path contains 'archive'
