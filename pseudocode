@@ -9,6 +9,7 @@ for repo os.walk
       send to xml
 
 CheckByline(lineNum):   #Only difference between archive and main is they will require different numbers for lineNum
+  open html as text
   return(html_lines[lineNum] == 'byline code for Bryan')
   
 SendToXML(html):
