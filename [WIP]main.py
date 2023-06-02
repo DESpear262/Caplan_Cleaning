@@ -10,7 +10,6 @@ destination_file = "D:\\Caplan\\xml_export.xml"     #Destination directory
 #####################
 #Code for deployment#
 #####################
-
 '''
 #loop through all files in directory = directory_name
 for path, subdirs, files in tqdm(os.walk(directory_name)):
