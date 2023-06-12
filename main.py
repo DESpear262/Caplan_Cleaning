@@ -10,20 +10,32 @@ destination_file = "D:\\Caplan\\xml_export.xml"     #Destination directory
 #####################
 #Code for deployment#
 #####################
-'''
+
+
+
 #loop through all files in directory = directory_name
-for path, subdirs, files in tqdm(os.walk(directory_name)):
+for path, subdirs, files in os.walk(directory_name):
         for name in files:
-            if "\\feed\\index.html" in f"{name}\\{path}" or "@" in f"{name}\\{path}" or ".html.1" in f"{name}\\{path}":  #feed files contain comments, which I don't need for this project, @ implies printer-friendly or otherwise redundant content
+            if len([s for s in [
+                "@",
+                ".html.1",
+                "\\wp-",
+                "www.econlib.org\\library",
+                "www.econlib.org\\econlog",
+                "www.econlib.org\\econtalk",
+                "www.econlib.org\\res\\img",
+                "www.econlib.org\\GQE"
+            ] if s in f"{path}\\{name}"]) > 0: #feed files contain comments, which I don't need for this project, @ implies printer-friendly or otherwise redundant content
                 pass
             else:
-                if checkByline(name):
-                    XMLDump(name, destination_file)
-'''
+                if name.endswith((".html")):
+                    if checkByline(f"{path}\\{name}"):
+                        XMLDump(f"{path}\\{name}", destination_file)
 
-testbed = "D:\\Caplan\\testbed"                     #Testbed for checkByline
-XMLTest = "D:\\Caplan\\XMLTest"                     #Testbed for XMLDump
-XMLOut = "D:\\Caplan\\out.xml"                      #Outfile for XMLDump test
+
+#testbed = "D:\\Caplan\\testbed"                     #Testbed for checkByline
+#XMLTest = "D:\\Caplan\\XMLTest"                     #Testbed for XMLDump
+#XMLOut = "D:\\Caplan\\out.xml"                      #Outfile for XMLDump test
 
 
 #######################
