@@ -7,10 +7,7 @@ def XMLDump(infile, outfile):
         # using Beautiful soup's html.parser.
         with open(infile, 'r', encoding='utf-8') as inp:
             soup = BeautifulSoup(inp, 'html.parser')
-
-        # Split the document by lines and join the lines
-        # from index 1 to remove the doctype Html as it is
-        # present in index 0 from the parsed document.
+            
         title = str(soup.find("title"))
         title = title[:-18] + title[-8:]
         header = str(soup.find("section", {"class": "article-single-page jumbotron main-banner econlog-logo-wide-center"}))
